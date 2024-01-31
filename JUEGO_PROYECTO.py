@@ -18,6 +18,11 @@ numero_secreto = random.randint(1, 100)
 # Crear una instancia del juego
 juego = JuegoAdivinaNumero(numero_secreto)
 
+print("Bienvenido al juego Adivina el Número.")
+print("El objetivo del juego es adivinar un número secreto entre 1 y 100.")
+print("Después de cada intento, se te dará una pista si el número es demasiado alto o demasiado bajo.")
+print("¡Buena suerte!\n")
+
 # Jugar hasta adivinar el número
 while True:
     intento = int(input("Intenta adivinar el número: "))
