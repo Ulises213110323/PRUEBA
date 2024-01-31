@@ -6,11 +6,11 @@ class JuegoAdivinaNumero:
 
     def adivinar(self, numero):
         if numero == self.numero_secreto:
-            return True, "¡Felicidades! Has adivinado el número."
+            return "\033[92m¡Felicidades! Has adivinado el número.\033[0m"
         elif numero < self.numero_secreto:
-            return False, "Demasiado bajo. Intenta de nuevo."
+            return "\033[91mDemasiado bajo. Intenta de nuevo.\033[0m"
         else:
-            return False, "Demasiado alto. Intenta de nuevo."
+            return "\033[91mDemasiado alto. Intenta de nuevo.\033[0m"
 
 while True:
     dificultad = input("Elige la dificultad (facil/dificil): ").lower()
@@ -20,22 +20,26 @@ while True:
         print("Por favor, ingresa 'facil' o 'dificil'.")
 
 while True:
-    # Generar un número secreto aleatorio entre 1 y 100
     numero_secreto = random.randint(1, 100)
-
-    # Crear una instancia del juego
     juego = JuegoAdivinaNumero(numero_secreto)
+    intentos_maximos = 10 
+    intentos_realizados = 0 
 
-    # Jugar hasta adivinar el número
-    while True:
+    while intentos_realizados < intentos_maximos:
         intento = int(input("Intenta adivinar el número: "))
-        resultado, mensaje = juego.adivinar(intento)
-        print(mensaje)
+        resultado = juego.adivinar(intento)
+        print(resultado)
 
-        if resultado:
-            jugar_nuevamente = input("¡Felicidades! ¿Quieres jugar de nuevo? (s/n): ").lower()
-            if jugar_nuevamente != 's':
-                print("¡Gracias por jugar!")
-                break
-            else:
-                break
+        intentos_realizados += 1
+
+        if intento == juego.numero_secreto:
+            print(f"¡Adivinaste el número en {intentos_realizados} intentos!")
+            break
+
+    if intento != juego.numero_secreto:
+        print(f"Has alcanzado el límite de {intentos_maximos} intentos. ¡Perdiste! El número secreto era {juego.numero_secreto}.")
+
+    jugar_nuevamente = input("¿Quieres jugar de nuevo? (s/n): ").lower()
+    if jugar_nuevamente != 's':
+        print("¡Gracias por jugar!")
+        break
