@@ -1,4 +1,5 @@
 import random
+import os
 
 class JuegoAdivinaNumero:
     def __init__(self, numero_secreto):
@@ -12,16 +13,17 @@ class JuegoAdivinaNumero:
         else:
             return "Demasiado alto. Intenta de nuevo."
 
+def limpiar_terminal():
+    if os.name == 'posix':
+        os.system('clear')
+    elif os.name == 'nt':
+        os.system('cls')
+
 # Generar un número secreto aleatorio entre 1 y 100
 numero_secreto = random.randint(1, 100)
 
 # Crear una instancia del juego
 juego = JuegoAdivinaNumero(numero_secreto)
-
-print("Bienvenido al juego Adivina el Número.")
-print("El objetivo del juego es adivinar un número secreto entre 1 y 100.")
-print("Después de cada intento, se te dará una pista si el número es demasiado alto o demasiado bajo.")
-print("¡Buena suerte!\n")
 
 # Jugar hasta adivinar el número
 while True:
@@ -31,3 +33,6 @@ while True:
 
     if intento == juego.numero_secreto:
         break
+    
+    input("Presiona Enter para continuar...")
+    limpiar_terminal()
