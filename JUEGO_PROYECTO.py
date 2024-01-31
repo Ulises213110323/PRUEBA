@@ -6,19 +6,19 @@ class JuegoAdivinaNumero:
 
     def adivinar(self, numero):
         if numero == self.numero_secreto:
-            return "¡Felicidades! Has adivinado el número."
+            return  "\033[92m¡Felicidades! Has adivinado el número.\033[0m"
         elif numero < self.numero_secreto:
-            return "Demasiado bajo. Intenta de nuevo."
+            return "\033[91mDemasiado bajo. Intenta de nuevo.\033[0m"
         else:
-            return "Demasiado alto. Intenta de nuevo."
+            return "\033[91mDemasiado alto. Intenta de nuevo.\033[0m"
+        
 
-# Generar un número secreto aleatorio entre 1 y 100
 numero_secreto = random.randint(1, 100)
 
-# Crear una instancia del juego
+
 juego = JuegoAdivinaNumero(numero_secreto)
 
-# Jugar hasta adivinar el número
+
 while True:
     intento = int(input("Intenta adivinar el número: "))
     resultado = juego.adivinar(intento)
