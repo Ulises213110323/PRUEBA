@@ -33,3 +33,5 @@ while True:
 
     if intento == juego.numero_secreto:
         break
+
+print(f"\n¡Gracias por jugar o⁠(⁠(⁠*⁠^⁠▽⁠^⁠*⁠)⁠)⁠o!!\n")
