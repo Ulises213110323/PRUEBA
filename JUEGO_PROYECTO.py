@@ -1,4 +1,5 @@
 import random
+import os
 
 class JuegoAdivinaNumero:
     def __init__(self, numero_secreto):
@@ -11,8 +12,19 @@ class JuegoAdivinaNumero:
             return "\033[91mDemasiado bajo. Intenta de nuevo.\033[0m"
         else:
             return "\033[91mDemasiado alto. Intenta de nuevo.\033[0m"
-        
-nombre_usuario = input("Hola! Cual es tu nombre?")
+
+def limpiar_terminal():
+    if os.name == 'posix':
+        os.system('clear')
+    elif os.name == 'nt':
+        os.system('cls')
+
+nombre_usuario = input("Hola! ¿Cuál es tu nombre?")
+
+print(f"\nHola {nombre_usuario}! Bienvenido al Juego Adivina el Número.")
+print("Instrucciones: Tienes que adivinar un número entre 1 y 100.")
+input("Presiona Enter para comenzar...")
+limpiar_terminal()
 
 while True:
     dificultad = input("Elige la dificultad (facil/dificil): ").lower()
@@ -41,8 +53,10 @@ while True:
     if intento != juego.numero_secreto:
         print(f"Has alcanzado el límite de {intentos_maximos} intentos. ¡Perdiste! El número secreto era {juego.numero_secreto}.")
 
-    
     jugar_nuevamente = input("¿Quieres jugar de nuevo? (s/n): ").lower()
     if jugar_nuevamente != 's':
         print(f"¡Gracias por jugar, {nombre_usuario} o⁠(⁠(⁠^⁠▽⁠ ^⁠⁠)⁠)⁠o!!")
         break
+    else:
+        input("Presiona Enter para jugar otra vez...")
+        limpiar_terminal()
